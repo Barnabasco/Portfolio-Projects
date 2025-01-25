@@ -1,3 +1,4 @@
+
 import os
 
 # Define the projects and their subfolders
@@ -36,9 +37,14 @@ for project in projects:
         
         # Create subfolders within each project
         for subfolder in subfolders:
-            os.makedirs(os.path.join(project, subfolder), exist_ok=True)
-
+            folder_path = os.path.join(project, subfolder)
+            os.makedirs(folder_path, exist_ok=True)
+            
+            # Add a .gitkeep file in each subfolder
+            gitkeep_path = os.path.join(folder_path, ".gitkeep")
+            with open(gitkeep_path, "w") as gitkeep_file:
+                gitkeep_file.write("")
     except Exception as e:
         print(f"Error creating folders for {project}: {e}")
 
-print("Folders and subfolders created successfully!")
+print("Folders, subfolders, and .gitkeep files created successfully!")
